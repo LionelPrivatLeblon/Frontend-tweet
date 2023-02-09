@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Head from "next/head";
 import Article from "./Article";
 import TopArticle from "./TopArticle";
 import styles from "../styles/Home.module.css";
-import { useSelector, useDispatch } from "react-redux";
 
 function Home() {
+  const bookmarks = useSelector((state) => state.bookmarks.value);
+  const hiddearticles = useSelector((state) => state.bookmarks.value);
+
   const [articlesData, setArticlesData] = useState([]);
   const [topArticle, setTopArticle] = useState({});
 
@@ -17,23 +20,37 @@ function Home() {
         setArticlesData(data.articles.filter((data, i) => i > 0));
       });
   }, []);*/
-  useEffect(() => {}, []);
 
   const articles = articlesData.map((data, i) => {
-    const isbookmarked = bookmarks.some(
+    const isBookmarked = bookmarks.some(
       (bookmark) => bookmark.title === data.title
     );
-    return <Article key={i} {...data} isbookmarked={isbookmarked} />;
+    const isArticled = hiddearticles.some(
+      (article) => article.title === data.title
+    );
+    return (
+      <Article
+        key={i}
+        {...data}
+        isBookmarked={isBookmarked}
+        isArticled={isArticled}
+      />
+    );
   });
+
+  let topArticles;
+  if (bookmarks.some((bookmark) => bookmark.title === topArticle.title)) {
+    topArticles = <TopArticle {...topArticle} isBookmarked={true} />;
+  } else {
+    topArticles = <TopArticle {...topArticle} isBookmarked={false} />;
+  }
 
   return (
     <div>
       <Head>
-        <title>Hacktweet</title>
+        <title>Morning News - Home</title>
       </Head>
-
-      <TopArticle {...topArticle} />
-
+      {topArticles}
       <div className={styles.articlesContainer}>{articles}</div>
     </div>
   );

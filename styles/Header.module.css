@@ -4,7 +4,6 @@
 }
 
 .accueil {
-  background-color: red;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -12,15 +11,60 @@
 }
 .blocleft {
   width: 40vw;
-  background-color: blue;
+  background-color: rgb(29, 155, 240);
 }
 .blocright {
   width: 60vw;
-  background-color: green;
+  background-color: rgb(15, 20, 25);
   display: flex;
+  align-items: center;
 }
 .blocwelcome {
-  height: 200px;
-  width: 200px;
-  background-color: yellow;
+  width: 400px;
+  color: #fff;
+  padding: 20px;
+}
+.btsignup {
+  background-color: rgb(29, 155, 240);
+  width: 160px;
+  color: #fff;
+  padding: 10px;
+  border-radius: 20px;
+  text-align: center;
+  font-weight: bold;
+  margin: 10px;
+  border: 1px solid #fff;
+}
+.btsignin {
+  background-color: rgb(15, 20, 25);
+  width: 160px;
+  color: #fff;
+  padding: 10px;
+  border-radius: 20px;
+  text-align: center;
+  font-weight: bold;
+  margin: 10px;
+  border: 1px solid #fff;
+}
+
+.reactModal {
+  position: absolute;
+  height: 400px;
+  width: 600px;
+  top: calc((100vh - 400px) / 2);
+  bottom: 0;
+  background-color: gray;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  color: #fff;
+}
+
+.registerSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

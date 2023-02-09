@@ -1,57 +1,75 @@
+import { useDispatch, useSelector } from "react-redux";
+import { addBookmark, removeBookmark } from "../reducers/bookmarks";
+import { displayArticle, hiddeAllArticle } from "../reducers/hiddenArticles";
 import Image from "next/image";
 import styles from "../styles/Article.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookmark } from "@fortawesome/free-solid-svg-icons";
-import { addNumberToStore, reduceNumberToStore } from "../reducers/counter";
-import { addBookmarksToStore } from "../reducers/bookmark";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { faBookmark, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 function Article(props) {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.value);
 
-  const addNumber = () => {
-    dispatch(addNumberToStore(props));
-    console.log("count " + props);
+  const handleBookmarkClick = () => {
+    if (!user.token) {
+      return;
+    }
+
+    fetch(`http://localhost:3000/users/canBookmark/${user.token}`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.result && data.canBookmark) {
+          if (props.isBookmarked) {
+            dispatch(removeBookmark(props));
+          } else {
+            dispatch(addBookmark(props));
+          }
+        }
+      });
+  };
+  const handleArticleClick = () => {
+    if (!user.token) {
+      return;
+    }
+
+    fetch(`http://localhost:3000/users/canArticle/${user.token}`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.result && data.canArticle) {
+          if (props.isBookmarked) {
+            dispatch(displayArticle(props));
+          } else {
+            dispatch(hiddeAllArticle(props));
+          }
+        }
+      });
   };
 
-  const reduceNumber = () => {
-    dispatch(reduceNumberToStore(props));
-    console.log(props);
-  };
+  let iconStyle = {};
+  if (props.isBookmarked) {
+    iconStyle = { color: "#E9BE59" };
+  }
 
-  const addBookmarks = () => {
-    dispatch(addBookmarksToStore(props));
-    console.log(props);
-  };
-
-  const counts = useSelector((state) => state.counter.value);
-
-  const [likedBookmarks, setlikedBookmarks] = useState([]);
+  let iconStyle2 = {};
+  if (props.isBookmarked) {
+    iconStyle = { color: "#E9BE59" };
+  }
 
   return (
     <div className={styles.articles}>
-      <button
-        className={styles.decrementBtn}
-        id="decrementBtn"
-        onClick={() => reduceNumber()}
-      >
-        -
-      </button>
-      <span className={styles.counter}>{counts}</span>
-      <button
-        className={styles.incrementBtn}
-        id="incrementBtn"
-        onClick={() => addNumber()}
-      >
-        +
-      </button>
       <div className={styles.articleHeader}>
         <h3>{props.title}</h3>
         <FontAwesomeIcon
+          onClick={() => handleBookmarkClick()}
           icon={faBookmark}
+          style={iconStyle}
           className={styles.bookmarkIcon}
-          onClick={() => addBookmarks()}
+        />
+        <FontAwesomeIcon
+          onClick={() => handleArticleClick()}
+          icon={faEyeSlash}
+          style={iconStyle2}
+          className={styles.articleIcon}
         />
       </div>
       <h4 style={{ textAlign: "right" }}>- {props.author}</h4>
