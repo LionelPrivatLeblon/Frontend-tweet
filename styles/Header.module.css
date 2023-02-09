@@ -1,0 +1,26 @@
+@font-face {
+  font-family: "Old London";
+  src: url("/fonts/OldLondon.ttf");
+}
+
+.accueil {
+  background-color: red;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100vh;
+}
+.blocleft {
+  width: 40vw;
+  background-color: blue;
+}
+.blocright {
+  width: 60vw;
+  background-color: green;
+  display: flex;
+}
+.blocwelcome {
+  height: 200px;
+  width: 200px;
+  background-color: yellow;
+}
