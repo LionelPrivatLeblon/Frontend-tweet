@@ -2,13 +2,11 @@ import { useDispatch, useSelector } from "react-redux";
 import Head from "next/head";
 import { login, logout } from "../reducers/user";
 import styles from "../styles/Content.module.css";
-import Article from "./Article";
-import { text } from "@fortawesome/fontawesome-svg-core";
 import Post from "../components/Post";
 import Tweet from "../components/Tweet";
+import Article from "../components/Article";
 
 function Contents() {
-  const bookmarks = useSelector((state) => state.bookmarks.value);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.value);
   console.log(user);
@@ -19,11 +17,6 @@ function Contents() {
   };
 
   let articles = <p>No article</p>;
-  if (bookmarks.length > 0) {
-    articles = bookmarks.map((data, i) => {
-      return <Article key={i} {...data} isBookmarked />;
-    });
-  }
 
   let userSection;
   if (user.token) {
@@ -55,6 +48,7 @@ function Contents() {
               <h2 className={styles.title}>Hashtags</h2>
               <Post />
               <Tweet />
+              <Article />
             </div>
           </div>
           <div className={styles.col2middle}>{articles}</div>
