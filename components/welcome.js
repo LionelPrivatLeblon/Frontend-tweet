@@ -39,7 +39,7 @@ function Welcome() {
       .then((response) => response.json())
       .then((data) => {
         if (data.result) {
-          dispatch(login({ username: signUpUsername, token: data.token }));
+          dispatch(login({ username: signUpUsername, forname: signUpForname, token:data.token }));
           setSignUpUsername("");
           setSignUpPassword("");
           setIsModalVisible(false);
@@ -64,6 +64,7 @@ function Welcome() {
           dispatch(
             login({
               username: signInUsername,
+              forname: signInForname,
               token: data.token,
             })
           );

@@ -7,7 +7,6 @@ import { displayTweet, removeTweet } from "../reducers/tweets";
 
 function Post(props) {
   const [newtweet, setNewtweet] = useState("");
-  const tweet = useSelector(((state) => state.user.value))
 
   const dispatch = useDispatch();
 
@@ -21,6 +20,7 @@ function Post(props) {
         onChange={(e) => setNewtweet(e.target.value)}
         value={newtweet}
         className={styles.inputTweet}
+        maxlength="280"
         type="text"
         placeholder="What's Up"
       ></input>
@@ -28,6 +28,7 @@ function Post(props) {
         <button
           onClick={() => handledisplayTweet()}
           className={styles.tweetBtn}
+          
         >
           TWEET
         </button>
