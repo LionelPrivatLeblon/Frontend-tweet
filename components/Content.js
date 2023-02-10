@@ -11,6 +11,7 @@ function Contents() {
   const bookmarks = useSelector((state) => state.bookmarks.value);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.value);
+  console.log(user);
 
   const handleLogout = () => {
     dispatch(logout());
