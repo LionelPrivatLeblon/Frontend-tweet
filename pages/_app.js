@@ -1,7 +1,7 @@
 import "../styles/globals.css";
 import Head from "next/head";
 import Header from "../components/Header";
-import Welcome from "../components/welcome";
+import Welcome from "../components/Welcome";
 
 import { Provider } from "react-redux";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
@@ -32,9 +32,9 @@ function App({ Component, pageProps }) {
         <Head>
           <title>Morning News</title>
         </Head>
-        <Welcome />
-        <Header />
         <Component {...pageProps} />
+
+        <Header />
       </PersistGate>
     </Provider>
   );

@@ -7,6 +7,7 @@ import { faUser, faXmark } from "@fortawesome/free-solid-svg-icons";
 import Moment from "react-moment";
 import { Modal } from "antd";
 import Link from "next/link";
+import Image from "next/image";
 
 function Welcome() {
   const dispatch = useDispatch();
@@ -42,6 +43,7 @@ function Welcome() {
           setSignUpUsername("");
           setSignUpPassword("");
           setIsModalVisible(false);
+          setIsModalVisible2(false);
         }
       });
   };
@@ -69,6 +71,8 @@ function Welcome() {
           setSignInForname("");
           setSignInPassword("");
           setIsModalVisible(false);
+          setIsModalVisible2(false);
+          window.location.replace("/content");
         }
       });
   };
@@ -166,6 +170,7 @@ function Welcome() {
       <div className={styles.blocright}>
         <div className={styles.blocwelcome}>
           <FontAwesomeIcon icon={faUser} className={styles.userSection} />
+          <Image src="/../img/twitter-64.png" width={100} height={100} alt="" />
           <h1>See what's happening</h1>
           <h2>Join Hackatweet today.</h2>
           <div className={styles.btsignup} onClick={() => showModal()}>
