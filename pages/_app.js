@@ -8,13 +8,13 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import bookmarks from "../reducers/bookmarks";
 import hiddenarticles from "../reducers/hiddenArticles";
 import user from "../reducers/user";
-
+import tweet from "../reducers/tweets";
 //Store Redux persist import
 import { persistStore, persistReducer } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 import storage from "redux-persist/lib/storage";
 
-const reducers = combineReducers({ bookmarks, user, hiddenarticles });
+const reducers = combineReducers({ bookmarks, user, tweet });
 const persistconfig = { key: "bestbookmarks", storage };
 
 const store = configureStore({

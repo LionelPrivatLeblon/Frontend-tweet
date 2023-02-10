@@ -4,8 +4,8 @@ const initialState = {
   value: [],
 };
 
-export const tweetsSlice = createSlice({
-  name: "tweets",
+export const tweetSlice = createSlice({
+  name: "tweet",
   initialState,
   reducers: {
     displayTweet: (state, action) => {
@@ -19,5 +19,5 @@ export const tweetsSlice = createSlice({
   },
 });
 
-export const { displayTweet, removeTweet } = tweetsSlice.actions;
-export default tweetsSlice.reducer;
+export const { displayTweet, removeTweet } = tweetSlice.actions;
+export default tweetSlice.reducer;
