@@ -1,5 +1,6 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Head from "next/head";
+import { login, logout } from "../reducers/user";
 import styles from "../styles/Content.module.css";
 import Article from "./Article";
 import { text } from "@fortawesome/fontawesome-svg-core";
@@ -8,12 +9,33 @@ import Tweet from "../components/Tweet";
 
 function Contents() {
   const bookmarks = useSelector((state) => state.bookmarks.value);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.value);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    window.location.replace("/");
+  };
 
   let articles = <p>No article</p>;
   if (bookmarks.length > 0) {
     articles = bookmarks.map((data, i) => {
       return <Article key={i} {...data} isBookmarked />;
     });
+  }
+
+  let userSection;
+  if (user.token) {
+    userSection = (
+      <div className={styles.logoutSection}>
+        <p>{user.username}</p>
+        <p>
+          @{user.username}
+          {user.forname}
+        </p>
+        <button onClick={() => handleLogout()}>Logout</button>
+      </div>
+    );
   }
 
   return (
@@ -24,7 +46,7 @@ function Contents() {
       <div className={styles.container}>
         <div className={styles.col1}>
           <div>Logo</div>
-          <div>Logo2</div>
+          <div>{userSection}</div>
         </div>
         <div className={styles.col2}>
           <div className={styles.col2top}>

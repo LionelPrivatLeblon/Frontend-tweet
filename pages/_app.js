@@ -33,8 +33,6 @@ function App({ Component, pageProps }) {
           <title>Morning News</title>
         </Head>
         <Component {...pageProps} />
-
-        <Header />
       </PersistGate>
     </Provider>
   );
