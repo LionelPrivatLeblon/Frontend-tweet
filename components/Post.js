@@ -24,12 +24,12 @@ function Post(props) {
         placeholder="What's Up"
       ></input>
       <div className={styles.secondline}>
-        <bouton
+        <button
           onClick={() => handledisplayTweet()}
           className={styles.tweetBtn}
         >
           TWEET
-        </bouton>
+        </button>
         <span className={styles.countWord}>{newtweet.length}/280</span>
       </div>
     </div>
