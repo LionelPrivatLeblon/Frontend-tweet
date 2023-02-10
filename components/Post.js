@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faTrash, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import styles from "../styles/Post.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { displayTweet, removeTweet } from "../reducers/tweets";
 
 function Post(props) {
@@ -20,6 +20,7 @@ function Post(props) {
         onChange={(e) => setNewtweet(e.target.value)}
         value={newtweet}
         className={styles.inputTweet}
+        maxlength="280"
         type="text"
         placeholder="What's Up"
       ></input>
@@ -27,6 +28,7 @@ function Post(props) {
         <button
           onClick={() => handledisplayTweet()}
           className={styles.tweetBtn}
+          
         >
           TWEET
         </button>

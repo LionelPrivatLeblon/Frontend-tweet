@@ -1,10 +1,11 @@
 import "../styles/globals.css";
 import Head from "next/head";
+import Welcome from "../components/Welcome";
 
 import { Provider } from "react-redux";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import user from "../reducers/user";
-
+import tweet from "../reducers/tweets";
 //Store Redux persist import
 import { persistStore, persistReducer } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";

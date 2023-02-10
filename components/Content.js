@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Head from "next/head";
 import { login, logout } from "../reducers/user";
 import styles from "../styles/Content.module.css";
+import { text } from "@fortawesome/fontawesome-svg-core";
 import Post from "../components/Post";
 import Tweet from "../components/Tweet";
 import Article from "../components/Article";
@@ -51,7 +52,6 @@ function Contents() {
               <Article />
             </div>
           </div>
-          <div className={styles.col2middle}>{articles}</div>
         </div>
         <div className={styles.col3}>
           <h2 className={styles.title}>Trends</h2>

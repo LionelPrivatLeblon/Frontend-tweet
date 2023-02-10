@@ -45,6 +45,7 @@ function Welcome() {
               token: data.token,
             })
           );
+          dispatch(login({ username: signUpUsername, forname: signUpForname, token:data.token }));
           setSignUpUsername("");
           setSignUpForname("");
           setSignUpPassword("");
